@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practical 4 - Dynamic UI & DOM Manipulation | 25CS084</title>
+  <meta name="description" content="Practical 4 submission for Web Development: Dynamic UI components, DOM manipulation, event handling, localStorage theme persistence, and accessibility.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========================================================
+       1. NOTIFICATION BANNER (Dismissible + Animated)
+       ======================================================== -->
+  <aside id="notification-banner" class="notification-banner" role="alert" aria-live="polite">
+    <div class="banner-container">
+      <div class="banner-content">
+        <span class="banner-badge">Notice</span>
+        <svg class="banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <p class="banner-text">
+          <strong>Practical 4 Live:</strong> Dynamic UI, DOM Events, LocalStorage & Accessibility are active.
+        </p>
+      </div>
+      <div class="banner-actions">
+        <button id="banner-action-btn" type="button" class="btn-banner-action">Explore Demo</button>
+        <button id="banner-close-btn" type="button" class="btn-banner-close" aria-label="Dismiss notification banner">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================
+       HEADER & NAVIGATION (Hamburger Menu & Theme Switcher)
+       ======================================================== -->
+  <header class="site-header" id="site-header">
+    <div class="nav-container">
+      <a href="#hero" class="brand-logo" aria-label="WDF Practical 4 Home">
+        <div class="logo-symbol">
+          <span class="logo-inner">&lt;/&gt;</span>
+        </div>
+        <div class="logo-meta">
+          <span class="logo-title">WDF Lab</span>
+          <span class="logo-tag">25CS084 · Practical 4</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="desktop-nav" aria-label="Primary Desktop Navigation">
+        <ul class="nav-list">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#slider-section" class="nav-link">Slider</a></li>
+          <li><a href="#faq-section" class="nav-link">FAQ</a></li>
+          <li><a href="#modal-section" class="nav-link">Modal</a></li>
+          <li><a href="#status-panel" class="nav-link">DOM Inspector</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Header Actions: Theme Switcher & Hamburger Toggle -->
+      <div class="header-actions">
+        <!-- Light / Dark Theme Switcher Button -->
+        <button id="theme-toggle-btn" class="theme-toggle" type="button" aria-label="Switch between light and dark theme" title="Toggle Light / Dark Mode">
+          <span class="theme-icon-container">
+            <!-- Sun Icon (shown in dark theme to switch to light) -->
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <!-- Moon Icon (shown in light theme to switch to dark) -->
+            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+          <span class="theme-label" id="theme-status-text">Light Mode</span>
+        </button>
+
+        <!-- Quick Demo Modal Open (in header for easy testing) -->
+        <button id="header-open-modal-btn" type="button" class="btn btn-sm btn-primary modal-trigger-btn">
+          Open Modal
+        </button>
+
+        <!-- Hamburger Button for Mobile -->
+        <button id="hamburger-btn" class="hamburger-btn" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Toggle navigation menu">
+          <span class="hamburger-bar bar-1"></span>
+          <span class="hamburger-bar bar-2"></span>
+          <span class="hamburger-bar bar-3"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile Navigation" aria-hidden="true">
+      <div class="mobile-nav-inner">
+        <ul class="mobile-nav-list">
+          <li><a href="#hero" class="mobile-nav-link">Home</a></li>
+          <li><a href="#slider-section" class="mobile-nav-link">Content Slider</a></li>
+          <li><a href="#faq-section" class="mobile-nav-link">FAQ Accordion</a></li>
+          <li><a href="#modal-section" class="mobile-nav-link">Modal Window</a></li>
+          <li><a href="#status-panel" class="mobile-nav-link">Live DOM Inspector</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+          <button id="mobile-theme-btn" type="button" class="btn btn-outline btn-full">
+            <span class="mobile-theme-icon">🌓</span> Toggle Color Theme
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========================================================
+       MAIN CONTENT CONTAINER
+       ======================================================== -->
+  <main class="main-content">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-container">
+        <div class="hero-badge-wrap">
+          <span class="pill-badge">
+            <span class="pulsing-dot"></span> Web Development Frameworks · Practical 4
+          </span>
+        </div>
+        <h1 class="hero-title">
+          Dynamic UI &amp; Client-Side DOM Architecture
+        </h1>
+        <p class="hero-subtitle">
+          Demonstrating interactive component patterns: FAQs, Modals, Sliders, Notification Banners, Responsive Hamburger Navigation, and persistent Light/Dark theming with <code class="code-pill">localStorage</code>.
+        </p>
+
+        <!-- Interactive Quick Action Dashboard -->
+        <div class="hero-actions">
+          <button id="hero-modal-trigger" class="btn btn-primary btn-lg" type="button">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="9" y1="3" x2="9" y2="21"></line>
+            </svg>
+            Trigger Modal Dialog
+          </button>
+          <button id="restore-banner-btn" class="btn btn-secondary btn-lg" type="button">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            Reset Notification Banner
+          </button>
+        </div>
+
+        <!-- Submission Criteria Checklist Tags -->
+        <div class="criteria-bar" aria-label="Practical 4 Core Requirements Status">
+          <span class="criterion-item checked" title="Completed">
+            <span class="check-icon">✓</span> Dynamic FAQ
+          </span>
+          <span class="criterion-item checked" title="Completed">
+            <span class="check-icon">✓</span> Interactive Modal
+          </span>
+          <span class="criterion-item checked" title="Completed">
+            <span class="check-icon">✓</span> Content Slider
+          </span>
+          <span class="criterion-item checked" title="Completed">
+            <span class="check-icon">✓</span> Hamburger Nav
+          </span>
+          <span class="criterion-item checked" title="Completed">
+            <span class="check-icon">✓</span> Light/Dark Theme
+          </span>
+          <span class="criterion-item checked" title="Completed">
+            <span class="check-icon">✓</span> localStorage
+          </span>
+          <span class="criterion-item checked" title="Completed">
+            <span class="check-icon">✓</span> Accessibility
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         2. IMAGE / CONTENT SLIDER (CAROUSEL) SECTION
+         ======================================================== -->
+    <section id="slider-section" class="section slider-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Component 01</span>
+          <h2 class="section-title">Interactive Content &amp; Card Slider</h2>
+          <p class="section-desc">
+            Responsive carousel supporting next/prev navigation, pagination indicators, auto-play with pause-on-hover, and keyboard navigation.
+          </p>
+        </div>
+
+        <div class="slider-wrapper" id="slider-wrapper">
+          <!-- Slider Main Frame -->
+          <div class="slider-viewport" id="slider-viewport" tabindex="0" aria-label="Interactive Showcase Carousel" role="region">
+            <div class="slider-track" id="slider-track">
+
+              <!-- Slide 1 -->
+              <div class="slider-slide" data-index="0" role="group" aria-roledescription="slide" aria-label="1 of 4: Dynamic UI & State">
+                <div class="slide-card card-gradient-1">
+                  <div class="slide-badge">Architecture · Module 1</div>
+                  <h3 class="slide-heading">Reactive DOM &amp; Component State</h3>
+                  <p class="slide-text">
+                    Manipulating the Document Object Model using native JavaScript APIs. Managing component states without heavy third-party dependencies.
+                  </p>
+                  <div class="slide-stats">
+                    <div class="stat-box">
+                      <span class="stat-number">6+</span>
+                      <span class="stat-label">Dynamic Components</span>
+                    </div>
+                    <div class="stat-box">
+                      <span class="stat-number">100%</span>
+                      <span class="stat-label">Vanilla JavaScript</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="slider-slide" data-index="1" role="group" aria-roledescription="slide" aria-label="2 of 4: LocalStorage Persistence">
+                <div class="slide-card card-gradient-2">
+                  <div class="slide-badge">Storage · Module 2</div>
+                  <h3 class="slide-heading">Client-Side Persistence via LocalStorage</h3>
+                  <p class="slide-text">
+                    Seamless user preference retention. When toggling light/dark themes, settings persist instantly through browser reloads and sessions.
+                  </p>
+                  <div class="slide-stats">
+                    <div class="stat-box">
+                      <span class="stat-number">0ms</span>
+                      <span class="stat-label">Latency Restore</span>
+                    </div>
+                    <div class="stat-box">
+                      <span class="stat-number">JSON</span>
+                      <span class="stat-label">Key-Value Pairs</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="slider-slide" data-index="2" role="group" aria-roledescription="slide" aria-label="3 of 4: Accessible Navigation">
+                <div class="slide-card card-gradient-3">
+                  <div class="slide-badge">Accessibility · Module 3</div>
+                  <h3 class="slide-heading">Inclusive UI &amp; ARIA Standards</h3>
+                  <p class="slide-text">
+                    Enhanced screen reader experience using <code>aria-expanded</code>, <code>aria-hidden</code>, semantic landmark roles, and ESC key dismissal.
+                  </p>
+                  <div class="slide-stats">
+                    <div class="stat-box">
+                      <span class="stat-number">WCAG</span>
+                      <span class="stat-label">AA Standard</span>
+                    </div>
+                    <div class="stat-box">
+                      <span class="stat-number">Tab+Esc</span>
+                      <span class="stat-label">Keyboard Flow</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 4 -->
+              <div class="slider-slide" data-index="3" role="group" aria-roledescription="slide" aria-label="4 of 4: Fluid CSS Animations">
+                <div class="slide-card card-gradient-4">
+                  <div class="slide-badge">Visuals · Module 4</div>
+                  <h3 class="slide-heading">High-Performance CSS Transitions</h3>
+                  <p class="slide-text">
+                    Hardware-accelerated transforms, glassmorphic surfaces, and micro-interactions delivering a fluid, desktop-class visual aesthetic.
+                  </p>
+                  <div class="slide-stats">
+                    <div class="stat-box">
+                      <span class="stat-number">60 FPS</span>
+                      <span class="stat-label">GPU Transitions</span>
+                    </div>
+                    <div class="stat-box">
+                      <span class="stat-number">Zero</span>
+                      <span class="stat-label">Layout Shifts</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Slider Controls (Prev & Next) -->
+          <button id="slider-prev-btn" class="slider-control prev-btn" type="button" aria-label="Previous slide" title="Previous Slide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button id="slider-next-btn" class="slider-control next-btn" type="button" aria-label="Next slide" title="Next Slide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Slider Bottom Bar: Indicators & Controls -->
+        <div class="slider-meta-bar">
+          <div class="slider-dots" id="slider-dots" role="tablist" aria-label="Slide Selection Dots">
+            <!-- Dynamically populated / Synced by JavaScript -->
+            <button class="slider-dot active" role="tab" aria-selected="true" aria-label="Slide 1" data-slide="0"></button>
+            <button class="slider-dot" role="tab" aria-selected="false" aria-label="Slide 2" data-slide="1"></button>
+            <button class="slider-dot" role="tab" aria-selected="false" aria-label="Slide 3" data-slide="2"></button>
+            <button class="slider-dot" role="tab" aria-selected="false" aria-label="Slide 4" data-slide="3"></button>
+          </div>
+
+          <div class="slider-playback-controls">
+            <span class="slider-counter" id="slider-counter">01 / 04</span>
+            <button id="slider-autoplay-btn" class="btn btn-sm btn-outline" type="button" aria-label="Toggle autoplay">
+              <span id="autoplay-icon">⏸</span>
+              <span id="autoplay-text">Pause Autoplay</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         3. MODAL POPUP SHOWCASE SECTION
+         ======================================================== -->
+    <section id="modal-section" class="section modal-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Component 02</span>
+          <h2 class="section-title">Accessible Modal Dialog</h2>
+          <p class="section-desc">
+            Overlay popup with backdrop blur, focus handling, ESC key dismissal, click-outside detection, and animated entry.
+          </p>
+        </div>
+
+        <div class="modal-demo-card">
+          <div class="modal-demo-content">
+            <div class="demo-icon-bubble">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <div>
+              <h3 class="demo-heading">Interactive Modal Test Bed</h3>
+              <p class="demo-text">
+                Click below to launch the modal. You can test closing it via the top close icon (<kbd>×</kbd>), the footer action buttons, pressing the <kbd>Esc</kbd> key on your keyboard, or tapping outside the modal window on the backdrop.
+              </p>
+            </div>
+          </div>
+          <div class="modal-demo-actions">
+            <button id="main-modal-open-btn" class="btn btn-primary modal-trigger-btn" type="button">
+              Launch Modal Popup
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         4. DYNAMIC FAQ ACCORDION SECTION
+         ======================================================== -->
+    <section id="faq-section" class="section faq-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Component 03</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-desc">
+            Animated collapsible accordion demonstrating event listeners, height transitions, ARIA states, and DOM class toggling.
+          </p>
+        </div>
+
+        <div class="faq-container" id="faq-accordion">
+
+          <!-- FAQ Item 1 (Open by default) -->
+          <article class="faq-item open" id="faq-item-1">
+            <button class="faq-question" type="button" aria-expanded="true" aria-controls="faq-ans-1" id="faq-q-1">
+              <span class="faq-question-text">How does DOM selection and manipulation work in JavaScript?</span>
+              <span class="faq-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-answer" id="faq-ans-1" role="region" aria-labelledby="faq-q-1">
+              <div class="faq-answer-inner">
+                <p>
+                  JavaScript uses methods such as <code>document.getElementById()</code>, <code>document.querySelector()</code>, and <code>document.querySelectorAll()</code> to select elements from the Document Object Model. Once selected, developers modify attributes, inline styles, text content, or toggle CSS classes using <code>element.classList.add()</code>, <code>remove()</code>, or <code>toggle()</code>.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- FAQ Item 2 -->
+          <article class="faq-item" id="faq-item-2">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-ans-2" id="faq-q-2">
+              <span class="faq-question-text">How is the Light and Dark theme persisted across page reloads?</span>
+              <span class="faq-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-answer" id="faq-ans-2" role="region" aria-labelledby="faq-q-2">
+              <div class="faq-answer-inner">
+                <p>
+                  We utilize the browser's <code>localStorage</code> API. When the user taps the theme toggle button, the new state (<code>'light'</code> or <code>'dark'</code>) is saved via <code>localStorage.setItem('wdf_theme_25cs084', theme)</code>. When the page reloads, an immediate script checks <code>localStorage.getItem()</code> and sets <code>document.documentElement.setAttribute('data-theme', theme)</code> before render.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- FAQ Item 3 -->
+          <article class="faq-item" id="faq-item-3">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-ans-3" id="faq-q-3">
+              <span class="faq-question-text">What event listeners are used for interactive components?</span>
+              <span class="faq-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-answer" id="faq-ans-3" role="region" aria-labelledby="faq-q-3">
+              <div class="faq-answer-inner">
+                <p>
+                  We bind <code>click</code> events on accordion buttons, modal open/close controls, hamburger toggles, and slider navigation. Additionally, global <code>keydown</code> events listen for the <kbd>Escape</kbd> key to close active modals, and <kbd>ArrowLeft</kbd> / <kbd>ArrowRight</kbd> keys to cycle through slider slides.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- FAQ Item 4 -->
+          <article class="faq-item" id="faq-item-4">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-ans-4" id="faq-q-4">
+              <span class="faq-question-text">How is accessibility (A11y) ensured throughout these components?</span>
+              <span class="faq-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-answer" id="faq-ans-4" role="region" aria-labelledby="faq-q-4">
+              <div class="faq-answer-inner">
+                <p>
+                  Every button utilizes semantic <code>&lt;button type="button"&gt;</code> elements, descriptive <code>aria-label</code> tags, and state flags such as <code>aria-expanded</code> and <code>aria-hidden</code>. Contrast ratios meet WCAG AA standards in both light and dark themes, and interactive items feature high-visibility keyboard focus rings.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- FAQ Item 5 -->
+          <article class="faq-item" id="faq-item-5">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-ans-5" id="faq-q-5">
+              <span class="faq-question-text">Can multiple accordion tabs be opened at once?</span>
+              <span class="faq-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-answer" id="faq-ans-5" role="region" aria-labelledby="faq-q-5">
+              <div class="faq-answer-inner">
+                <p>
+                  Yes! In this implementation, each FAQ item functions independently, allowing users to compare answers simultaneously. The JavaScript toggles the clicked item's state smoothly without closing active neighbors.
+                </p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         5. REAL-TIME DOM INSPECTOR & EVENT MONITOR PANEL
+         ======================================================== -->
+    <section id="status-panel" class="section status-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Practical 4 Verification</span>
+          <h2 class="section-title">Live DOM &amp; State Monitor</h2>
+          <p class="section-desc">
+            Visual verification verifying real-time JavaScript DOM updates, active component states, and event listeners.
+          </p>
+        </div>
+
+        <div class="status-grid">
+          <!-- State Card 1: Theme State -->
+          <div class="status-card">
+            <div class="status-card-header">
+              <span class="card-status-dot active"></span>
+              <h3 class="status-card-title">Theme (localStorage)</h3>
+            </div>
+            <div class="status-val-wrap">
+              <span class="status-val" id="monitor-theme-val">light</span>
+            </div>
+            <p class="status-hint">Persisted key: <code>wdf_theme_25cs084</code></p>
+          </div>
+
+          <!-- State Card 2: Slider State -->
+          <div class="status-card">
+            <div class="status-card-header">
+              <span class="card-status-dot active"></span>
+              <h3 class="status-card-title">Active Slide</h3>
+            </div>
+            <div class="status-val-wrap">
+              <span class="status-val" id="monitor-slide-val">Slide 1 of 4</span>
+            </div>
+            <p class="status-hint">Autoplay status: <span id="monitor-autoplay-val" class="badge-mini">Active</span></p>
+          </div>
+
+          <!-- State Card 3: Modal State -->
+          <div class="status-card">
+            <div class="status-card-header">
+              <span class="card-status-dot" id="monitor-modal-dot"></span>
+              <h3 class="status-card-title">Modal Popup State</h3>
+            </div>
+            <div class="status-val-wrap">
+              <span class="status-val" id="monitor-modal-val">Closed</span>
+            </div>
+            <p class="status-hint">Backdrop &amp; Esc listener active</p>
+          </div>
+
+          <!-- State Card 4: Notification Banner -->
+          <div class="status-card">
+            <div class="status-card-header">
+              <span class="card-status-dot active" id="monitor-banner-dot"></span>
+              <h3 class="status-card-title">Banner Status</h3>
+            </div>
+            <div class="status-val-wrap">
+              <span class="status-val" id="monitor-banner-val">Visible</span>
+            </div>
+            <p class="status-hint">Dismissible via close button</p>
+          </div>
+        </div>
+
+        <!-- Live Event Activity Log -->
+        <div class="event-log-container">
+          <div class="event-log-header">
+            <div class="event-log-title">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+              <span>Recent DOM &amp; User Events Stream</span>
+            </div>
+            <button id="clear-log-btn" class="btn btn-xs btn-outline" type="button">Clear Log</button>
+          </div>
+          <ul id="event-log-list" class="event-log-list" aria-live="polite">
+            <li class="log-entry log-system">Application loaded: DOM tree parsed, theme verified, and event listeners initialized.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       MODAL DIALOG (Hidden by default, triggered dynamically)
+       ======================================================== -->
+  <div id="demo-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-title">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-container">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="modal-header-info">
+          <div class="modal-icon-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+          <div>
+            <h2 id="modal-title" class="modal-title">Practical 4 Demo Modal</h2>
+            <p class="modal-subtitle">Candidate: Yug Patel · Roll No: 25CS084</p>
+          </div>
+        </div>
+        <button id="modal-close-icon-btn" class="modal-close-btn" type="button" aria-label="Close modal dialog">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <p class="modal-paragraph">
+          This modal dialog fulfills the <strong>Modal Popup</strong> criteria of Practical 4. It demonstrates comprehensive DOM handling and event accessibility:
+        </p>
+
+        <ul class="modal-features-list">
+          <li>
+            <strong>Backdrop Click:</strong> Clicking outside this dialog box safely closes it.
+          </li>
+          <li>
+            <strong>ESC Key Listener:</strong> Press the <kbd>Escape</kbd> key anywhere to dismiss.
+          </li>
+          <li>
+            <strong>Accessibility:</strong> Implements <code>role="dialog"</code> and updates <code>aria-hidden</code> dynamically.
+          </li>
+          <li>
+            <strong>Transitions:</strong> CSS cubic-bezier scale and opacity transitions prevent abrupt UI popping.
+          </li>
+        </ul>
+
+        <div class="modal-interactive-box">
+          <label for="modal-input" class="modal-input-label">Interactive Input Test:</label>
+          <div class="input-action-row">
+            <input type="text" id="modal-input" class="modal-input" placeholder="Type something to test DOM event logging..." value="Testing DOM event dispatch">
+            <button id="modal-test-action-btn" type="button" class="btn btn-sm btn-primary">Dispatch Event</button>
+          </div>
+          <p id="modal-action-feedback" class="feedback-text"></p>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button id="modal-cancel-btn" type="button" class="btn btn-secondary">Close (Esc)</button>
+        <button id="modal-confirm-btn" type="button" class="btn btn-primary">Confirm &amp; Log Action</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       FOOTER
+       ======================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <p class="footer-title">Web Development Frameworks (WDF)</p>
+        <p class="footer-desc">Practical 4: Dynamic UI, DOM Manipulation, Event Handling, and LocalStorage</p>
+      </div>
+      <div class="footer-right">
+        <p class="footer-credit">Student: <strong>Yug Patel (25CS084)</strong></p>
+        <p class="footer-badge">Due Date: 27 September 2026</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>

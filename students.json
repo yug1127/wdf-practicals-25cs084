@@ -1,0 +1,137 @@
+[
+    {
+        "id": 1,
+        "name": "Aarav Patel",
+        "email": "aarav.patel@example.com",
+        "course": "BCA",
+        "year": "First Year",
+        "city": "Ahmedabad",
+        "marks": 82
+    },
+    {
+        "id": 2,
+        "name": "Diya Shah",
+        "email": "diya.shah@example.com",
+        "course": "BBA",
+        "year": "Second Year",
+        "city": "Surat",
+        "marks": 91
+    },
+    {
+        "id": 3,
+        "name": "Rohan Mehta",
+        "email": "rohan.mehta@example.com",
+        "course": "B.Tech",
+        "year": "Third Year",
+        "city": "Vadodara",
+        "marks": 76
+    },
+    {
+        "id": 4,
+        "name": "Ananya Desai",
+        "email": "ananya.desai@example.com",
+        "course": "B.Sc",
+        "year": "First Year",
+        "city": "Rajkot",
+        "marks": 88
+    },
+    {
+        "id": 5,
+        "name": "Vivaan Joshi",
+        "email": "vivaan.joshi@example.com",
+        "course": "BCA",
+        "year": "Third Year",
+        "city": "Ahmedabad",
+        "marks": 79
+    },
+    {
+        "id": 6,
+        "name": "Ishita Trivedi",
+        "email": "ishita.trivedi@example.com",
+        "course": "BBA",
+        "year": "Second Year",
+        "city": "Bhavnagar",
+        "marks": 94
+    },
+    {
+        "id": 7,
+        "name": "Arjun Modi",
+        "email": "arjun.modi@example.com",
+        "course": "B.Com",
+        "year": "Third Year",
+        "city": "Gandhinagar",
+        "marks": 73
+    },
+    {
+        "id": 8,
+        "name": "Meera Patel",
+        "email": "meera.patel@example.com",
+        "course": "BCA",
+        "year": "Second Year",
+        "city": "Ahmedabad",
+        "marks": 89
+    },
+    {
+        "id": 9,
+        "name": "Krish Malhotra",
+        "email": "krish.malhotra@example.com",
+        "course": "B.Tech",
+        "year": "Fourth Year",
+        "city": "Surat",
+        "marks": 84
+    },
+    {
+        "id": 10,
+        "name": "Kiara Shah",
+        "email": "kiara.shah@example.com",
+        "course": "B.Sc",
+        "year": "Second Year",
+        "city": "Vadodara",
+        "marks": 96
+    },
+    {
+        "id": 11,
+        "name": "Dev Patel",
+        "email": "dev.patel@example.com",
+        "course": "B.Com",
+        "year": "First Year",
+        "city": "Rajkot",
+        "marks": 71
+    },
+    {
+        "id": 12,
+        "name": "Myra Mehta",
+        "email": "myra.mehta@example.com",
+        "course": "BBA",
+        "year": "Third Year",
+        "city": "Ahmedabad",
+        "marks": 87
+    },
+    {
+        "id": 13,
+        "name": "Aditya Shah",
+        "email": "aditya.shah@example.com",
+        "course": "B.Tech",
+        "year": "Second Year",
+        "city": "Gandhinagar",
+        "marks": 78
+    },
+    {
+        "id": 14,
+        "name": "Sara Desai",
+        "email": "sara.desai@example.com",
+        "course": "BCA",
+        "year": "First Year",
+        "city": "Surat",
+        "marks": 92
+    },
+    {
+        "id": 15,
+        "name": "Yash Trivedi",
+        "email": "yash.trivedi@example.com",
+        "course": "B.Com",
+        "year": "Fourth Year",
+        "city": "Vadodara",
+        "marks": 81
+    }
+]

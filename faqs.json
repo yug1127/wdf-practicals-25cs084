@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "question": "How can I register for a course?",
+        "answer": "Students can register for courses through the student portal.",
+        "category": "Registration"
+    },
+    {
+        "id": 2,
+        "question": "How can I check my attendance?",
+        "answer": "Attendance can be viewed from the Attendance section of the student portal.",
+        "category": "Attendance"
+    },
+    {
+        "id": 3,
+        "question": "Where can I find study materials?",
+        "answer": "Study materials are available in the Materials section.",
+        "category": "Materials"
+    },
+    {
+        "id": 4,
+        "question": "How can I update my profile?",
+        "answer": "Open the Profile section and select the edit profile option.",
+        "category": "Profile"
+    },
+    {
+        "id": 5,
+        "question": "How can I reset my password?",
+        "answer": "Use the Forgot Password option on the login page.",
+        "category": "Account"
+    },
+    {
+        "id": 6,
+        "question": "Where are college notices displayed?",
+        "answer": "Important college notices are displayed in the Notices section.",
+        "category": "Notices"
+    },
+    {
+        "id": 7,
+        "question": "How can I view my timetable?",
+        "answer": "The complete class timetable is available under the Timetable section.",
+        "category": "Timetable"
+    },
+    {
+        "id": 8,
+        "question": "How can I contact the administration?",
+        "answer": "Students can use the Contact section to find administrative contact information.",
+        "category": "Contact"
+    },
+    {
+        "id": 9,
+        "question": "How can I register for an event?",
+        "answer": "Open the Events section and select the event registration option.",
+        "category": "Events"
+    },
+    {
+        "id": 10,
+        "question": "Where can I find examination information?",
+        "answer": "Examination schedules and instructions are available in the Notices section.",
+        "category": "Examination"
+    },
+    {
+        "id": 11,
+        "question": "Can I access the portal from mobile?",
+        "answer": "Yes, the student portal is designed to work on mobile devices.",
+        "category": "Technical"
+    },
+    {
+        "id": 12,
+        "question": "How can I submit feedback?",
+        "answer": "Feedback can be submitted through the Feedback section.",
+        "category": "Feedback"
+    },
+    {
+        "id": 13,
+        "question": "How can I check my marks?",
+        "answer": "Students can check their marks through the academic results section.",
+        "category": "Results"
+    },
+    {
+        "id": 14,
+        "question": "Who should I contact for technical problems?",
+        "answer": "Contact the college technical support team for technical issues.",
+        "category": "Technical"
+    },
+    {
+        "id": 15,
+        "question": "Where can I find placement information?",
+        "answer": "Placement information is available through the Placement Cell section.",
+        "category": "Placement"
+    }
+]

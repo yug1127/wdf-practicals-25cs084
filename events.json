@@ -1,0 +1,122 @@
+[
+    {
+        "id": 1,
+        "title": "Web Development Workshop",
+        "date": "2026-09-25",
+        "category": "Workshop",
+        "venue": "Computer Lab 1",
+        "organizer": "IT Department"
+    },
+    {
+        "id": 2,
+        "title": "Annual Sports Day",
+        "date": "2026-09-28",
+        "category": "Sports",
+        "venue": "College Ground",
+        "organizer": "Sports Committee"
+    },
+    {
+        "id": 3,
+        "title": "Coding Competition",
+        "date": "2026-10-02",
+        "category": "Competition",
+        "venue": "Programming Lab",
+        "organizer": "Coding Club"
+    },
+    {
+        "id": 4,
+        "title": "Career Guidance Seminar",
+        "date": "2026-10-05",
+        "category": "Seminar",
+        "venue": "Seminar Hall",
+        "organizer": "Placement Cell"
+    },
+    {
+        "id": 5,
+        "title": "Cultural Festival",
+        "date": "2026-10-10",
+        "category": "Cultural",
+        "venue": "Main Auditorium",
+        "organizer": "Cultural Committee"
+    },
+    {
+        "id": 6,
+        "title": "Cyber Security Workshop",
+        "date": "2026-10-14",
+        "category": "Workshop",
+        "venue": "Computer Lab 2",
+        "organizer": "Cyber Security Club"
+    },
+    {
+        "id": 7,
+        "title": "Basketball Tournament",
+        "date": "2026-10-18",
+        "category": "Sports",
+        "venue": "Sports Complex",
+        "organizer": "Sports Committee"
+    },
+    {
+        "id": 8,
+        "title": "Hackathon 2026",
+        "date": "2026-10-22",
+        "category": "Competition",
+        "venue": "Innovation Center",
+        "organizer": "Tech Club"
+    },
+    {
+        "id": 9,
+        "title": "Resume Building Seminar",
+        "date": "2026-10-25",
+        "category": "Seminar",
+        "venue": "Seminar Hall",
+        "organizer": "Placement Cell"
+    },
+    {
+        "id": 10,
+        "title": "Photography Exhibition",
+        "date": "2026-10-29",
+        "category": "Cultural",
+        "venue": "Art Gallery",
+        "organizer": "Photography Club"
+    },
+    {
+        "id": 11,
+        "title": "JavaScript Masterclass",
+        "date": "2026-11-02",
+        "category": "Workshop",
+        "venue": "Computer Lab 1",
+        "organizer": "IT Department"
+    },
+    {
+        "id": 12,
+        "title": "Cricket Tournament",
+        "date": "2026-11-07",
+        "category": "Sports",
+        "venue": "College Ground",
+        "organizer": "Sports Committee"
+    },
+    {
+        "id": 13,
+        "title": "AI Project Competition",
+        "date": "2026-11-12",
+        "category": "Competition",
+        "venue": "Innovation Center",
+        "organizer": "AI Club"
+    },
+    {
+        "id": 14,
+        "title": "Higher Studies Seminar",
+        "date": "2026-11-17",
+        "category": "Seminar",
+        "venue": "Main Auditorium",
+        "organizer": "Academic Cell"
+    },
+    {
+        "id": 15,
+        "title": "Music Night",
+        "date": "2026-11-22",
+        "category": "Cultural",
+        "venue": "Main Auditorium",
+        "organizer": "Cultural Committee"
+    }
+]

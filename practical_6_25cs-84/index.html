@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CHARUSAT Campus Data Explorer: Dynamic JSON rendering, Fetch API, live search & filtering, multi-field sorting, pagination, and modular JavaScript architecture. Practical 6 by Yug Patel (25CS084).">
+  <meta name="author" content="Yug Patel - 25CS084">
+  <title>Practical 6: Fetch API & Dynamic JSON Explorer | 25CS084</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement / Header Bar -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-group">
+        <div class="brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1 class="brand-title">Campus Data Explorer</h1>
+          <p class="brand-subtitle">WDF Practical 6 &bull; JSON, Fetch API & Modular JS</p>
+        </div>
+      </div>
+
+      <!-- Student Badge & Controls -->
+      <div class="header-actions">
+        <div class="student-chip" title="Practical Author Details">
+          <span class="chip-avatar">YP</span>
+          <div class="chip-info">
+            <span class="chip-name">Yug Patel</span>
+            <span class="chip-roll">Roll No: 25CS084</span>
+          </div>
+        </div>
+
+        <!-- Testing Simulation Controls -->
+        <div class="test-controls-group">
+          <button class="btn btn-sm btn-outline" id="btnSimulateLatency" title="Toggle artificial network delay to test loading skeletons">
+            ⏳ Delay: 400ms
+          </button>
+          <button class="btn btn-sm btn-outline" id="btnSimulateError" title="Simulate a 500 Network Fetch error to test error state and retry handling">
+            ⚠️ Simulate Error
+          </button>
+        </div>
+
+        <!-- Dark / Light Theme Toggle -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle light and dark color mode">
+          <svg id="themeIcon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <!-- Dynamically populated by app.js -->
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-wrapper">
+    
+    <!-- Hero / Objective Overview -->
+    <section class="overview-section">
+      <div class="overview-content">
+        <h2>Dynamic JSON Data Portal</h2>
+        <p>
+          Demonstrating modern <strong>Fetch API</strong> asynchronous requests, 
+          <strong>Modular ES architecture</strong>, dynamic client-side rendering, multi-field 
+          <strong>instant search &amp; filtering</strong>, flexible <strong>sorting</strong>, and 
+          <strong>smart pagination</strong>.
+        </p>
+      </div>
+
+      <!-- Dataset Selector Tabs -->
+      <nav class="dataset-nav" aria-label="JSON Datasets">
+        <button class="dataset-tab active" data-dataset="events" id="tab-events">
+          <span class="tab-icon">📅</span>
+          <span class="tab-text">Campus Events</span>
+          <span class="tab-count-badge">16 records</span>
+        </button>
+        <button class="dataset-tab" data-dataset="students" id="tab-students">
+          <span class="tab-icon">👨‍🎓</span>
+          <span class="tab-text">Student Directory</span>
+          <span class="tab-count-badge">16 records</span>
+        </button>
+        <button class="dataset-tab" data-dataset="faqs" id="tab-faqs">
+          <span class="tab-icon">❓</span>
+          <span class="tab-text">Campus FAQs</span>
+          <span class="tab-count-badge">16 records</span>
+        </button>
+      </nav>
+    </section>
+
+    <!-- Toolbar / Search, Filter, Sort & Controls -->
+    <section class="toolbar-section">
+      <div class="search-box-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input 
+          type="search" 
+          id="searchInput" 
+          class="search-input" 
+          placeholder="Search by title, name, venue, department, skills..." 
+          autocomplete="off"
+          aria-label="Search records"
+        >
+        <span class="search-kbd-hint"><kbd>/</kbd></span>
+        <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="Clear search" style="display: none;">&times;</button>
+      </div>
+
+      <div class="filter-controls-wrap">
+        <!-- Dynamic Category / Branch Filter -->
+        <div class="control-item">
+          <label for="filterCategory" class="control-label">Category / Branch:</label>
+          <select id="filterCategory" class="custom-select" aria-label="Filter by Category or Branch">
+            <option value="all">All Categories</option>
+          </select>
+        </div>
+
+        <!-- Dynamic Status Filter -->
+        <div class="control-item">
+          <label for="filterSecondary" class="control-label">Status:</label>
+          <select id="filterSecondary" class="custom-select" aria-label="Filter by Status">
+            <option value="all">All Statuses</option>
+          </select>
+        </div>
+
+        <!-- Dynamic Sort By Dropdown -->
+        <div class="control-item">
+          <label for="sortBy" class="control-label">Sort By:</label>
+          <select id="sortBy" class="custom-select" aria-label="Sort By Field">
+            <!-- Injected by JavaScript -->
+          </select>
+        </div>
+
+        <!-- Sort Direction Toggle -->
+        <div class="control-item sort-direction-item">
+          <label class="control-label">Order:</label>
+          <button type="button" id="sortOrderBtn" class="btn btn-outline btn-sort" title="Toggle Ascending / Descending">
+            <span id="sortOrderIcon">▲ ASC</span>
+          </button>
+        </div>
+
+        <!-- Page Size Selector -->
+        <div class="control-item page-size-item">
+          <label for="pageSize" class="control-label">Per Page:</label>
+          <select id="pageSize" class="custom-select" aria-label="Items per page">
+            <option value="6" selected>6</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+          </select>
+        </div>
+
+        <!-- Reset Button -->
+        <div class="control-item reset-btn-item">
+          <button type="button" id="btnResetFilters" class="btn btn-secondary btn-reset" title="Reset all search queries and filters">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+              <path d="M3 3v5h5"></path>
+            </svg>
+            Reset
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Status Bar -->
+    <section class="status-bar-section">
+      <div id="resultsSummary" class="results-summary">
+        Initialising records...
+      </div>
+      <div class="status-bar-actions">
+        <span id="apiStatusBadge" class="status-pill status-ready">
+          Ready
+        </span>
+      </div>
+    </section>
+
+    <!-- Dynamic Content Presentation View -->
+    <section id="contentContainer" class="content-display-section" aria-live="polite">
+      <!-- Dynamic cards/accordions/skeletons injected by PortalRenderer -->
+    </section>
+
+    <!-- Pagination Navigation Controls -->
+    <footer id="paginationContainer" class="pagination-section">
+      <!-- Dynamic pagination buttons injected by PortalRenderer -->
+    </footer>
+
+  </main>
+
+  <!-- Page Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <p><strong>Web Development Frameworks (WDF) - Practical 6</strong></p>
+        <p>Charotar University of Science and Technology (CHARUSAT)</p>
+      </div>
+      <div class="footer-center">
+        <span class="badge-student">Student: Yug Patel | Roll: 25CS084</span>
+      </div>
+      <div class="footer-right">
+        <p>Features: JSON &bull; Fetch API &bull; Filter &bull; Sort &bull; Pagination &bull; Modular JS</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modular JavaScript Architecture (Structured into distinct, single-responsibility files) -->
+  <script src="js/api.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

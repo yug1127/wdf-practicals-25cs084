@@ -1,0 +1,162 @@
+[
+  {
+    "id": "FAQ-01",
+    "question": "How do I apply for end-semester examination re-assessment or re-checking?",
+    "category": "Examinations",
+    "answer": "Students can apply for answer book viewing and re-assessment via the university e-governance student portal within 7 days of result declaration. A nominal re-checking fee per course is payable online. The evaluated answer sheet with evaluator remarks will be made available for review.",
+    "tags": ["Exams", "Re-assessment", "Evaluation", "Portal"],
+    "views": 1840,
+    "helpfulCount": 142,
+    "lastUpdated": "2026-09-15"
+  },
+  {
+    "id": "FAQ-02",
+    "question": "What is the minimum attendance requirement to be eligible for final examinations?",
+    "category": "Academics",
+    "answer": "As per university academic regulations, a minimum of 80% aggregate attendance is mandatory in each registered course (lectures and practical lab sessions). Students with verified medical grounds can apply for a waiver up to 10% through their respective Head of Department (HOD) with medical documentation.",
+    "tags": ["Attendance", "Regulations", "Medical Leave", "Eligibility"],
+    "views": 2450,
+    "helpfulCount": 210,
+    "lastUpdated": "2026-08-10"
+  },
+  {
+    "id": "FAQ-03",
+    "question": "How can students access digital library resources and IEEE / ACM research papers?",
+    "category": "Library",
+    "answer": "All registered students are provisioned institutional OpenAthens / VPN credentials. You can access IEEE Xplore, ScienceDirect, ACM Digital Library, and SpringerLink both on-campus via Wi-Fi and remotely from home via library.charusat.ac.in using your university email SSO.",
+    "tags": ["Digital Library", "IEEE", "ACM", "Research", "VPN"],
+    "views": 1290,
+    "helpfulCount": 98,
+    "lastUpdated": "2026-09-02"
+  },
+  {
+    "id": "FAQ-04",
+    "question": "What merit scholarships and financial assistance are available for undergraduate students?",
+    "category": "Scholarships",
+    "answer": "The university awards Merit-cum-Means Scholarships, Tuition Fee Waiver (TFW) schemes, and special Chancellor Scholarships for top rankers with CGPA >= 9.0. State and National scholarship portal applications (MYSY, Digital Gujarat) are verified and endorsed by the student welfare office annually.",
+    "tags": ["Scholarship", "MYSY", "Financial Aid", "TFW", "Merit"],
+    "views": 3120,
+    "helpfulCount": 275,
+    "lastUpdated": "2026-07-28"
+  },
+  {
+    "id": "FAQ-05",
+    "question": "How do I connect to the high-speed campus Wi-Fi network 'CHARUSAT_STUDENT'?",
+    "category": "IT Services",
+    "answer": "Select the 'CHARUSAT_STUDENT' SSID from your device Wi-Fi settings. Set EAP method to PEAP, Phase 2 authentication to MSCHAPV2, and CA certificate to 'Do not validate'. Log in using your university student ID credentials. Contact the IT Helpdesk in Computer Center Lab 1 for assistance.",
+    "tags": ["Wi-Fi", "Internet", "IT Helpdesk", "Credentials"],
+    "views": 4150,
+    "helpfulCount": 380,
+    "lastUpdated": "2026-08-01"
+  },
+  {
+    "id": "FAQ-06",
+    "question": "What is the procedure for registering for campus placement drives and internships?",
+    "category": "Placements",
+    "answer": "Students entering Semester 6 or 7 must register on the Training & Placement Cell portal (tnp.charusat.ac.in). Maintain an updated verified resume, attend mandatory soft-skills and aptitude training sessions, and clear any academic backlogs to meet corporate eligibility criteria.",
+    "tags": ["T&P", "Placements", "Internships", "Resume", "Jobs"],
+    "views": 3890,
+    "helpfulCount": 315,
+    "lastUpdated": "2026-09-20"
+  },
+  {
+    "id": "FAQ-07",
+    "question": "How can I obtain an official Bonafide Certificate or Academic Transcript?",
+    "category": "Administration",
+    "answer": "Submit a request on the student portal under 'Student Services -> Certificate Request'. Standard bonafide certificates are issued digitally within 24 working hours. Official sealed transcripts require 3 working days and can be collected from the Academic Registrar counter.",
+    "tags": ["Bonafide", "Transcripts", "Certificates", "Registrar"],
+    "views": 1640,
+    "helpfulCount": 115,
+    "lastUpdated": "2026-06-18"
+  },
+  {
+    "id": "FAQ-08",
+    "question": "What hostel accommodation and dining facilities are provided for outstation students?",
+    "category": "Campus Facilities",
+    "answer": "The campus offers separate, secure AC and Non-AC hostels for boys and girls with 24/7 security, hygienic multi-cuisine dining messes, laundromat, medical room, gym, and study lounges. Room allotment opens each June on first-come-first-served basis.",
+    "tags": ["Hostel", "Mess", "Accommodation", "Campus Living"],
+    "views": 2180,
+    "helpfulCount": 165,
+    "lastUpdated": "2026-07-12"
+  },
+  {
+    "id": "FAQ-09",
+    "question": "How do I choose Open Electives and SWAYAM / NPTEL MOOC courses for credit transfer?",
+    "category": "Academics",
+    "answer": "During the pre-registration window before each semester, students select university-approved NPTEL / SWAYAM MOOC courses matching their credit syllabus. Upon earning the proctored exam certificate with >= 60% marks, submit it to the departmental academic coordinator for credit transfer.",
+    "tags": ["Electives", "NPTEL", "SWAYAM", "Credits", "MOOC"],
+    "views": 1750,
+    "helpfulCount": 140,
+    "lastUpdated": "2026-08-25"
+  },
+  {
+    "id": "FAQ-10",
+    "question": "What healthcare and medical emergency services are available on campus?",
+    "category": "Campus Facilities",
+    "answer": "The University Health Center operates 24/7 adjacent to the Sports Pavilion with resident medical officers, emergency nursing staff, and a dedicated ambulance. All enrolled students are covered under the comprehensive Student Group Medical Insurance scheme.",
+    "tags": ["Health", "Medical", "Emergency", "Doctor", "Ambulance"],
+    "views": 980,
+    "helpfulCount": 78,
+    "lastUpdated": "2026-05-30"
+  },
+  {
+    "id": "FAQ-11",
+    "question": "How can students establish a new technical or cultural club on campus?",
+    "category": "Campus Facilities",
+    "answer": "To initiate a recognized student club, draft a charter specifying the club vision, executive board, and proposed annual calendar. Secure endorsement from at least one faculty advisor and gather 25 student signatures, then submit the proposal to the Dean of Student Affairs.",
+    "tags": ["Clubs", "Student Activities", "Societies", "Leadership"],
+    "views": 1120,
+    "helpfulCount": 84,
+    "lastUpdated": "2026-06-05"
+  },
+  {
+    "id": "FAQ-12",
+    "question": "What are the rules and guidelines for internal continuous evaluation (mid-sem exams)?",
+    "category": "Examinations",
+    "answer": "Internal evaluation consists of two centralized Mid-Semester Tests (30 marks each, best of two or average as per syllabus), laboratory continuous assessment, project milestones, quizzes, and surprise tests. Make-up tests are permitted only for verified medical emergencies.",
+    "tags": ["Mid-Sem", "Internal Marks", "Evaluation", "Assignments"],
+    "views": 2040,
+    "helpfulCount": 158,
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "FAQ-13",
+    "question": "Where can students obtain software licenses like MATLAB, JetBrains, and Office 365?",
+    "category": "IT Services",
+    "answer": "Students can activate complimentary Microsoft 365 Enterprise licenses using their student email ID. MATLAB Campus-Wide licenses and JetBrains Ultimate Student packs can be claimed through their respective student developer portals with institutional email verification.",
+    "tags": ["Software", "MATLAB", "JetBrains", "Office 365", "Licenses"],
+    "views": 2730,
+    "helpfulCount": 245,
+    "lastUpdated": "2026-08-14"
+  },
+  {
+    "id": "FAQ-14",
+    "question": "What support is provided by the University Incubation & Innovation Center (E-Cell)?",
+    "category": "Scholarships",
+    "answer": "The incubation center provides student startups with physical co-working spaces, high-speed cloud infrastructure, legal patent filing grants up to INR 2.5 Lakhs under SSIP 2.0, mentoring by industry founders, and seed funding access.",
+    "tags": ["Startup", "Incubation", "SSIP", "Funding", "Patents"],
+    "views": 1510,
+    "helpfulCount": 128,
+    "lastUpdated": "2026-07-20"
+  },
+  {
+    "id": "FAQ-15",
+    "question": "How are library book borrow limits and renewal policies configured?",
+    "category": "Library",
+    "answer": "Undergraduate students can issue up to 4 books concurrently for a 14-day loan period. Books can be renewed twice online via the KOHA OPAC portal provided no reservation hold exists. Overdue fines of INR 2 per day apply thereafter.",
+    "tags": ["Library", "KOHA", "Book Loan", "Renewal", "Fines"],
+    "views": 1340,
+    "helpfulCount": 92,
+    "lastUpdated": "2026-08-29"
+  },
+  {
+    "id": "FAQ-16",
+    "question": "What are the anti-ragging measures and grievance redressal helpline numbers?",
+    "category": "Administration",
+    "answer": "The campus upholds a strict zero-tolerance anti-ragging policy. Any concern can be reported immediately to the Anti-Ragging Squad, through CCTV monitored drop-boxes, or via the 24x7 National Anti-Ragging Helpline (1800-180-5522). Identity remains strictly confidential.",
+    "tags": ["Safety", "Anti-Ragging", "Discipline", "Helpline", "Support"],
+    "views": 2980,
+    "helpfulCount": 310,
+    "lastUpdated": "2026-06-25"
+  }
+]
